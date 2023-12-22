@@ -14,7 +14,7 @@ root.render(
    <Routes>
      <Route path="/" element={ <MainLayout />}>
        <Route index element={<HomeContainer />} />
-       <Route path="/questions/" element={<QuestionsContainer />} />
+       <Route path="/questions" element={<QuestionsContainer />} />
      </Route>
    </Routes>
  </BrowserRouter>
