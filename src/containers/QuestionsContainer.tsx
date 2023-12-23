@@ -11,6 +11,7 @@ const QuestionsContainer = () => {
     const [randomQuestion , setRandomQuestion] = useState([]);
     const [loading , setLoading] = useState<boolean>();
     const [selectedOption, setSelectedOption] = useState('');
+    const [checkResponse, setcheckResponse] = useState('');
     const [score, setCountScore]= useState(0);
 
     const handleOptionChange = (event) => { //Capturar la opcion seleccionada y actualizar la variable de estado
@@ -19,6 +20,9 @@ const QuestionsContainer = () => {
 
     const checkAnswer = () => { // Funcion para checkear respuestas
         if(selectedOption && selectedOption != "") {
+
+            document.querySelector('.textResultResponse').classList.remove('dontshow');
+
             if(selectedOption == questions[countQusetion].correct_answer){
                 console.log("Respuesta Correcta");
                 if(questions[countQusetion].difficulty == "easy"){
@@ -28,12 +32,23 @@ const QuestionsContainer = () => {
                 }else if (questions[countQusetion].difficulty == "hard"){
                     setCountScore(score+3); //Dificultad dificil suma 3 punto al Score
                 }
+
+                setcheckResponse("Respuesta Correcta")
             }else {
+
+                setcheckResponse("Respuesta Incorrecta")
                 console.log("Respuesta Incorrecta");
             }
 
-            setCountQusetion(countQusetion + 1);
+            if(countQusetion < 9){ // Si el contador no ha llegado a la pregunta numero 10
+                setCountQusetion(countQusetion + 1);
+            }
+            
             setSelectedOption('');
+
+            setTimeout(() => {
+                document.querySelector('.textResultResponse').classList.add('dontshow');
+            }, 1000);
         }
     }
 
@@ -108,7 +123,7 @@ const QuestionsContainer = () => {
             {questions && questions.length > 0 && (
                 <div className="bodyQuestions">
                 <p className="questionText">{questions[countQusetion].question}</p>
-                {questions[countQusetion].type == 'multiple' ? (
+                {questions[countQusetion] && questions[countQusetion].type == 'multiple' ? (
                     <div className="multipleContainer">
                         <form>
                             <label className="labelOption">
@@ -151,6 +166,7 @@ const QuestionsContainer = () => {
                 )}
                 </div>
             )}
+                <p className="textResultResponse dontshow">{checkResponse}</p>
                 <Button clasname="confirmButton" text="Confirm" onClick={checkAnswer}/>
                 <NavLink to="/" >
                     <Button clasname="backButton" text="Back"/>
