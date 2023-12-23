@@ -1,0 +1,16 @@
+
+.questionContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 90vh;
+    width: 60vw; 
+    background-color: $Dark-Red;
+    color: $White;
+    border-radius: 25px;
+    padding: 25px;
+
+    .userNameLabel{
+        font-size: 28px;
+    }
+}

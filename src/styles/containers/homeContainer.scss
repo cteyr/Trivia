@@ -4,7 +4,7 @@
     flex-direction: column;
     height: 90vh;
     width: 60vw; 
-    background-color: #B22222;
+    background-color: $Dark-Red;
     color: white;
     border-radius: 25px;
 
@@ -37,15 +37,7 @@
             .labelHome{
                 font-size: 28px;
                 margin-bottom: 5px;
-            }
-    
-            .inputNameUser{
-                width: 100%;
-                border: none;
-                padding: 10px;
-                border-radius: 5px;
-                outline: none;
-            }
+            }         
         }
     
         .buttonnHomeContainer{
@@ -54,26 +46,6 @@
             justify-content: center;
             flex-direction: column;
             margin-top: 10px;
-    
-            .startButton {
-                margin-top: 30px;
-                padding: 10px;
-                border-radius: 5px;
-                border: none;
-                background-color: white;
-                color: #B22222;
-                width: 245px;
-                font-weight: bolder;
-                font-size: 18px;
-            }
-    
-            .startButton:hover{
-                cursor: pointer;
-                border: 1px solid white;
-                background-color: #B22222;
-                color: white;
-            }
-    
         }
     }
 

@@ -13,6 +13,10 @@ const HomeContainer = () =>{
     useEffect(() => {
        if(nameUser != ""){ //Compruebo si el campo "Username" es distinto de vacio
         setStateButton(false); //Habilito el boton de login
+        localStorage.setItem('userName', nameUser);
+       }else {
+        setStateButton(true); //Deshabilito el boton de login
+        localStorage.setItem('userName', '');
        }
     }, [nameUser]);
     
@@ -26,7 +30,7 @@ const HomeContainer = () =>{
                         <Input value={nameUser} 
                         clasname="inputNameUser" 
                         handleInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setNameUser(e.target.value)}
-                        placeholder="Username"
+                        placeholder="Nombre de Usuario"
                         />
                     </div>
                     <div className="buttonnHomeContainer">
