@@ -10,7 +10,33 @@
     border-radius: 25px;
     padding: 25px;
 
-    .userNameLabel{
-        font-size: 28px;
+    .topContainer{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        .userNameLabel{
+            font-size: 28px;
+        }
+
+        .countQuestionLabel{
+            font-size: 28px;
+        }
     }
+
+    .bodyQuestions {
+        margin-top: 20px;
+        width: 100%;
+        background-color: $White;
+        border-radius: 10px;
+        padding: 10px;
+
+        .questionText {
+            color: $Dark-Red;
+            font-size: 24px;
+            text-align: center;
+        }
+    }
+
+   
 }
