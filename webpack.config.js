@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const webpack = require("webpack");
+const { NetlifyPlugin } = require("netlify-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -27,9 +29,27 @@ module.exports = {
       },
     ],
   },
-  plugins: [new HtmlWebpackPlugin({ template: "./public/index.html" })],
+  plugins: [
+    new HtmlWebpackPlugin({
+     title: "Trivia",
+     template: "./public/index.html" 
+    }),
+    new webpack.ProvidePlugin({
+      process: "process/browser",
+    }),
+    new NetlifyPlugin({
+      redirects: [
+        {
+          from: "/*",
+          to: "/index.html",
+          status: 200,
+        },
+      ],
+    }),
+    ],
   devServer: {
     port: 3000,
     open: true,
+    historyApiFallback: true,
   },
 };
