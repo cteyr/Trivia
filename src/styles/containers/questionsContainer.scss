@@ -18,17 +18,21 @@
             font-size: 28px;
         }
 
+        .scoreLabel {
+            font-size: 28px;
+        }
+
         .countQuestionLabel{
             font-size: 28px;
         }
     }
 
     .bodyQuestions {
-        margin-top: 50px;
+        margin-top: 100px;
         width: 100%;
         background-color: $White;
         border-radius: 10px;
-        padding: 10px;
+        padding: 20px;
 
         .questionText {
             color: $Dark-Red;
@@ -50,10 +54,35 @@
 
                 .labelOption{
                     color: $Dark-Red;
+
+                    span{
+                        margin-left: 5px;
+                    }
                 }
             }
 
             
+        }
+
+        .booleanContainer {
+            display: flex;
+            width: 100%;
+          
+
+            form {
+                display: flex;
+                flex-direction: column;
+                margin-top: 10px;
+                gap: 10px;
+
+                .labelOption{
+                    color: $Dark-Red;
+
+                    span{
+                        margin-left: 5px;
+                    }
+                }
+            }
         }
     }
 

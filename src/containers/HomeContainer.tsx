@@ -25,18 +25,18 @@ const HomeContainer = () =>{
             <img className="logoHome" src={triviaLogo} alt="logoTrivia"/>
                 <div className="mainContainerForm">
                     <div className="inputHomeContainer">
-                        <p className="welcomeHome">Bienvenidos</p>
-                        <p className="labelHome">Introduzca su nombre</p>
+                        <p className="welcomeHome">Welcome</p>
+                        <p className="labelUser">Enter your username</p>
                         <Input value={nameUser} 
                         clasname="inputNameUser"
                         type="text" 
                         handleInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setNameUser(e.target.value)}
-                        placeholder="Nombre de Usuario"
+                        placeholder="Username"
                         />
                     </div>
                     <div className="buttonnHomeContainer">
                     <NavLink to="/questions" >
-                        <Button clasname="startButton" text="Comenzar" disabled={stateButton}/>
+                        <Button clasname="startButton" text="Start" disabled={stateButton}/>
                     </NavLink>
                     </div>
                 </div>

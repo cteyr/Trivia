@@ -2,23 +2,40 @@ import { useState,useEffect } from "react";
 import { Question } from "../types/question";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
+import { NavLink } from "react-router-dom";
 
 const QuestionsContainer = () => {
     const [currentUser, setCurrentUser]= useState("");
     const [questions, setQuestions] = useState <Question[]>([]);
     const [countQusetion, setCountQusetion]= useState(0);
-
+    const [randomQuestion , setRandomQuestion] = useState([]);
+    const [loading , setLoading] = useState<boolean>();
     const [selectedOption, setSelectedOption] = useState('');
+    const [score, setCountScore]= useState(0);
 
     const handleOptionChange = (event) => { //Capturar la opcion seleccionada y actualizar la variable de estado
       setSelectedOption(event.target.value);
     };
 
-    useEffect(() => {
-        console.log("La pregunta seleccionada es ",selectedOption);
-    }, [selectedOption]);
+    const checkAnswer = () => { // Funcion para checkear respuestas
+        if(selectedOption && selectedOption != "") {
+            if(selectedOption == questions[countQusetion].correct_answer){
+                console.log("Respuesta Correcta");
+                if(questions[countQusetion].difficulty == "easy"){
+                    setCountScore(score+1); //Dificultad facil suma 1 punto al Score
+                }else if(questions[countQusetion].difficulty == "medium"){
+                    setCountScore(score+2); //Dificultad media suma 2 punto al Score
+                }else if (questions[countQusetion].difficulty == "hard"){
+                    setCountScore(score+3); //Dificultad dificil suma 3 punto al Score
+                }
+            }else {
+                console.log("Respuesta Incorrecta");
+            }
 
-
+            setCountQusetion(countQusetion + 1);
+            setSelectedOption('');
+        }
+    }
 
     useEffect(() => { //Colocar nombre de Usuario
         let userName = localStorage.getItem('userName');
@@ -33,14 +50,20 @@ const QuestionsContainer = () => {
         fetch(`https://opentdb.com/api.php?amount=10`, { signal })
             .then(response => response.json())
             .then(data => {
-                setQuestions(data.results);
+                if(data.response_code == 0) { // Respondio correctamente
+                    setQuestions(data.results);
+                    setLoading(true); 
+                }else if(data.response_code == 5){ // Respondio (Too Many Requests)
+                    console.log("Respuesta del servidor (Demasiadas solicitudes)");
+                    setLoading(false); 
+                }else {
+                    console.log("Codigo de error desconocido");
+                    setLoading(false); 
+                }
+                
             })
             .catch(error => {
-                if (error.name === 'AbortError') {
-                    console.log('La solicitud fue cancelada');
-                } else {
-                    console.error('Error:', error);
-                }
+                console.log('Error ',error);
             });
     
         return () => {
@@ -48,11 +71,38 @@ const QuestionsContainer = () => {
         };
     }, []);
 
+    useEffect(() => {
+        if(loading){
+            let randomizedAnswers = []; //Array de preguntas
+            let correct_question = false; //Control para saber cuando ya eh puesto la pregunta correcta
+            let incorrect_question = 0; //Contador de preguntas incorrecta
+
+            if(questions[countQusetion].type == 'multiple'){
+                for (let i = 0; i < 4; i++) {
+                    if(Math.round(Math.random()) == 0 && correct_question==false){
+                        randomizedAnswers.push(questions[countQusetion].correct_answer);
+                        correct_question = true;
+                    }else {
+                        randomizedAnswers.push( questions[countQusetion].incorrect_answers[incorrect_question]);
+                        incorrect_question = incorrect_question +1;
+                    }
+                }
+            }else{
+                randomizedAnswers.push("True");
+                randomizedAnswers.push("False");
+            }
+            
+            setRandomQuestion(randomizedAnswers);
+        }
+        
+    }, [countQusetion, loading]);
+
     return (
         <div className="questionContainer">
             <div className="topContainer">
-                <p className="userNameLabel">Usuario: {currentUser}</p>
-                <p className="countQuestionLabel">Preguntas: {countQusetion+1}/10</p>
+                <p className="userNameLabel">User: {currentUser}</p>
+                <p className="scoreLabel">Score: {score}</p>
+                <p className="countQuestionLabel">Questions: {countQusetion+1}/10</p>
             </div>
          
             {questions && questions.length > 0 && (
@@ -62,34 +112,50 @@ const QuestionsContainer = () => {
                     <div className="multipleContainer">
                         <form>
                             <label className="labelOption">
-                              <Input type="radio" value="option1" checked={selectedOption === 'option1'} handleInputChange={handleOptionChange}/>
-                              {questions[countQusetion].correct_answer}
+                              <Input type="radio" value={randomQuestion[0]} checked={selectedOption === randomQuestion[0]} handleInputChange={handleOptionChange}/>
+                              <span>{randomQuestion[0]}</span>
                             </label>
 
                             <label className="labelOption">
-                              <Input type="radio" value="option2" checked={selectedOption === 'option2'} handleInputChange={handleOptionChange}/>
-                              {questions[countQusetion].incorrect_answers[0]}
+                              <Input type="radio" value={randomQuestion[1]} checked={selectedOption === randomQuestion[1]} handleInputChange={handleOptionChange}/>
+                              <span>{randomQuestion[1]}</span> 
                             </label>
 
                             <label className="labelOption">
-                              <Input type="radio" value="option3" checked={selectedOption === 'option3'} handleInputChange={handleOptionChange}/>
-                              {questions[countQusetion].incorrect_answers[1]}
+                              <Input type="radio" value={randomQuestion[2]} checked={selectedOption === randomQuestion[2]} handleInputChange={handleOptionChange}/>
+                              <span>{randomQuestion[2]}</span> 
                             </label>
 
                             <label className="labelOption">
-                              <Input type="radio" value="option4" checked={selectedOption === 'option4'} handleInputChange={handleOptionChange}/>
-                              {questions[countQusetion].incorrect_answers[2]}
+                              <Input type="radio" value={randomQuestion[3]} checked={selectedOption === randomQuestion[3]} handleInputChange={handleOptionChange}/>
+                              <span>{randomQuestion[3]}</span> 
                             </label>
                         </form>
                     </div>
                 ):(
                     <div className="booleanContainer">
-                        <p>Booleano</p>
+                        <form>
+                            <label className="labelOption">
+                              <Input type="radio" value={randomQuestion[0]} checked={selectedOption === randomQuestion[0]} handleInputChange={handleOptionChange}/>
+                              <span>{randomQuestion[0]}</span> 
+                            </label>
+
+                            <label className="labelOption">
+                              <Input type="radio" value={randomQuestion[1]} checked={selectedOption === randomQuestion[1]} handleInputChange={handleOptionChange}/>
+                              <span>{randomQuestion[1]}</span> 
+                            </label>
+
+                        </form>
+                        
                     </div>
                 )}
                 </div>
             )}
-                <Button clasname="confirmButton" text="Confirm"/>
+                <Button clasname="confirmButton" text="Confirm" onClick={checkAnswer}/>
+                <NavLink to="/" >
+                    <Button clasname="backButton" text="Back"/>
+                </NavLink>
+                
         </div>
     );
 }
