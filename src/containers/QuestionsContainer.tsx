@@ -70,6 +70,7 @@ const QuestionsContainer = () => {
                     setLoading(true); 
                 }else if(data.response_code == 5){ // Respondio (Too Many Requests)
                     console.log("Respuesta del servidor (Demasiadas solicitudes)");
+                    document.querySelector('.messageErrorApi').classList.remove('dontshow');
                     setLoading(false); 
                 }else {
                     console.log("Codigo de error desconocido");
@@ -119,7 +120,7 @@ const QuestionsContainer = () => {
                 <p className="scoreLabel">Score: {score}</p>
                 <p className="countQuestionLabel">Questions: {countQusetion+1}/10</p>
             </div>
-         
+            <p className="messageErrorApi dontshow">Respuesta del servidor: Demasiadas solicitudes. Inténtelo de nuevo pasados unos segundos.</p>
             {questions && questions.length > 0 && (
                 <div className="bodyQuestions">
                 <p className="questionText">{questions[countQusetion].question}</p>
