@@ -3,7 +3,6 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 90vh;
     width: 60vw; 
     background-color: $Dark-Red;
     color: $White;
@@ -25,7 +24,7 @@
     }
 
     .bodyQuestions {
-        margin-top: 20px;
+        margin-top: 50px;
         width: 100%;
         background-color: $White;
         border-radius: 10px;
@@ -35,6 +34,26 @@
             color: $Dark-Red;
             font-size: 24px;
             text-align: center;
+        }
+
+
+        .multipleContainer{
+            display: flex;
+            width: 100%;
+          
+
+            form {
+                display: flex;
+                flex-direction: column;
+                margin-top: 10px;
+                gap: 10px;
+
+                .labelOption{
+                    color: $Dark-Red;
+                }
+            }
+
+            
         }
     }
 

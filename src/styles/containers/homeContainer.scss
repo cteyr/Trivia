@@ -2,11 +2,11 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 90vh;
     width: 60vw; 
     background-color: $Dark-Red;
     color: white;
     border-radius: 25px;
+    padding-bottom: 50px;
 
     .logoHome {
         border-radius: 25px 25px 0 0;
@@ -31,7 +31,7 @@
 
             .welcomeHome {
                 font-size: 48px;
-                margin-bottom: 50px;
+                margin-bottom: 30px;
             }
     
             .labelHome{

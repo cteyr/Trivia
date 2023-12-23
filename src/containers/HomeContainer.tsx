@@ -28,7 +28,8 @@ const HomeContainer = () =>{
                         <p className="welcomeHome">Bienvenidos</p>
                         <p className="labelHome">Introduzca su nombre</p>
                         <Input value={nameUser} 
-                        clasname="inputNameUser" 
+                        clasname="inputNameUser"
+                        type="text" 
                         handleInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setNameUser(e.target.value)}
                         placeholder="Nombre de Usuario"
                         />

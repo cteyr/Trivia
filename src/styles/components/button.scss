@@ -8,9 +8,30 @@
     width: 245px;
     font-weight: bolder;
     font-size: 18px;
+    border: 1px solid $White;
 }
 
 .startButton:hover{
+    cursor: pointer;
+    border: 1px solid $White;
+    background-color: $Dark-Red;
+    color: $White;
+}
+
+.confirmButton{
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: $White;
+    color: $Dark-Red;
+    width: 245px;
+    font-weight: bolder;
+    font-size: 18px;
+    border: 1px solid $White;
+}
+
+.confirmButton:hover{
     cursor: pointer;
     border: 1px solid $White;
     background-color: $Dark-Red;
