@@ -33,10 +33,10 @@ const QuestionsContainer = () => {
                     setCountScore(score+3); //Dificultad dificil suma 3 punto al Score
                 }
 
-                setcheckResponse("Respuesta Correcta")
+                setcheckResponse("Correct answer")
             }else {
 
-                setcheckResponse("Respuesta Incorrecta")
+                setcheckResponse("Wrong answer")
                 console.log("Respuesta Incorrecta");
             }
 
@@ -120,7 +120,7 @@ const QuestionsContainer = () => {
                 <p className="scoreLabel">Score: {score}</p>
                 <p className="countQuestionLabel">Questions: {countQusetion+1}/10</p>
             </div>
-            <p className="messageErrorApi dontshow">Respuesta del servidor: Demasiadas solicitudes. Inténtelo de nuevo pasados unos segundos.</p>
+            <p className="messageErrorApi dontshow">Server response: Too many requests. Try again after a few seconds.</p>
             {questions && questions.length > 0 && (
                 <div className="bodyQuestions">
                 <p className="questionText">{questions[countQusetion].question}</p>
