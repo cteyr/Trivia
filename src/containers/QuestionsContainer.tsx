@@ -13,6 +13,7 @@ const QuestionsContainer = () => {
     const [selectedOption, setSelectedOption] = useState('');
     const [checkResponse, setcheckResponse] = useState('');
     const [score, setCountScore]= useState(0);
+    const [timer, setTimer]= useState(15);
 
     const handleOptionChange = (event) => { //Capturar la opcion seleccionada y actualizar la variable de estado
       setSelectedOption(event.target.value);
@@ -42,6 +43,7 @@ const QuestionsContainer = () => {
 
             if(countQusetion < 9){ // Si el contador no ha llegado a la pregunta numero 10
                 setCountQusetion(countQusetion + 1);
+                setTimer(15); //Inicializamos el contador en 15 segundos
             }
             
             setSelectedOption('');
@@ -51,6 +53,28 @@ const QuestionsContainer = () => {
             }, 1000);
         }
     }
+
+    useEffect(() => { //Temporizador cuenta regresiva
+        if(loading){
+            const interval = setInterval(() => {
+                setTimer(prevTimer => {
+                    if (prevTimer > 0) {
+                        return prevTimer - 1;
+                    } else {
+                        clearInterval(interval);
+                        //timerElement.textContent = '¡Tiempo terminado!';
+                        if(countQusetion < 9){
+                            setCountQusetion(countQusetion + 1); // Avanzamos a la siguiente pregunta
+                            setTimer(15); //Inicializamos el contador en 15 segundos
+                        }
+                        return 0;
+                    }
+                });
+            }, 1000);
+    
+            return () => clearInterval(interval);
+        }
+    }, [countQusetion, loading]);
 
     useEffect(() => { //Colocar nombre de Usuario
         let userName = localStorage.getItem('userName');
@@ -71,7 +95,8 @@ const QuestionsContainer = () => {
                 }else if(data.response_code == 5){ // Respondio (Too Many Requests)
                     console.log("Respuesta del servidor (Demasiadas solicitudes)");
                     document.querySelector('.messageErrorApi').classList.remove('dontshow');
-                    setLoading(false); 
+                    setLoading(false);
+                    setCountQusetion(-1); 
                 }else {
                     console.log("Codigo de error desconocido");
                     setLoading(false); 
@@ -120,6 +145,7 @@ const QuestionsContainer = () => {
                 <p className="scoreLabel">Score: {score}</p>
                 <p className="countQuestionLabel">Questions: {countQusetion+1}/10</p>
             </div>
+                <p id="timer" className="timerLabel">Tiempo restante: {timer} segundos</p>
             <p className="messageErrorApi dontshow">Server response: Too many requests. Try again after a few seconds.</p>
             {questions && questions.length > 0 && (
                 <div className="bodyQuestions">
