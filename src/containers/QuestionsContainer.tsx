@@ -56,6 +56,7 @@ const QuestionsContainer = () => {
 
     useEffect(() => { //Temporizador cuenta regresiva
         if(loading){
+            document.querySelector('.timerLabel').classList.remove('dontshow');
             const interval = setInterval(() => {
                 setTimer(prevTimer => {
                     if (prevTimer > 0) {
@@ -148,7 +149,7 @@ const QuestionsContainer = () => {
                 <p className="scoreLabel">Score: {score}</p>
                 <p className="countQuestionLabel">Questions: {countQusetion+1}/10</p>
             </div>
-                <p id="timer" className="timerLabel">Tiempo restante: {timer} segundos</p>
+                <p id="timer" className="timerLabel dontshow">Time left: {timer} seconds</p>
             <p className="messageErrorApi dontshow">Server response: Too many requests. Try again after a few seconds.</p>
             {questions && questions.length > 0 && (
                 <div className="bodyQuestions">

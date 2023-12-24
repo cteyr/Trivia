@@ -9,10 +9,20 @@
     border-radius: 25px;
     padding: 25px;
 
+    @media screen and (max-width: 800px) {
+        width: 95vw; 
+    }
+
     .topContainer{
         display: flex;
         justify-content: space-between;
         width: 100%;
+
+        @media screen and (max-width: 450px) {
+            flex-direction: column;
+            text-align: center;
+            gap: 5px;
+        }
 
         .userNameLabel{
             font-size: 28px;
@@ -30,6 +40,11 @@
     .timerLabel {
         margin-top: 80px;
         font-size: 28px;
+        text-align: center;
+
+        @media screen and (max-width: 450px) {
+            margin-top: 50px;
+        }
     }
 
     .bodyQuestions {
