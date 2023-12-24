@@ -44,6 +44,12 @@ const QuestionsContainer = () => {
             if(countQusetion < 9){ // Si el contador no ha llegado a la pregunta numero 10
                 setCountQusetion(countQusetion + 1);
                 setTimer(15); //Inicializamos el contador en 15 segundos
+            }else {
+                document.querySelector('.bodyQuestions').classList.add('dontshow');
+                document.querySelector('.resultContainer').classList.remove('dontshow');
+                setTimer(0);
+                document.querySelector('.timerLabel').classList.add('dontshow');
+                document.querySelector('.textResultResponse').classList.add('dontshow');
             }
             
             setSelectedOption('');
@@ -67,6 +73,12 @@ const QuestionsContainer = () => {
                         if(countQusetion < 9){
                             setCountQusetion(countQusetion + 1); // Avanzamos a la siguiente pregunta
                             setTimer(15); //Inicializamos el contador en 15 segundos
+                        }else{
+                            document.querySelector('.bodyQuestions').classList.add('dontshow');
+                            document.querySelector('.resultContainer').classList.remove('dontshow');
+                            setTimer(0);
+                            document.querySelector('.timerLabel').classList.add('dontshow');
+                            document.querySelector('.textResultResponse').classList.add('dontshow');
                         }
                         return 0;
                     }
@@ -146,7 +158,7 @@ const QuestionsContainer = () => {
         <div className="questionContainer">
             <div className="topContainer">
                 <p className="userNameLabel">User: {currentUser}</p>
-                <p className="scoreLabel">Score: {score}</p>
+                <p className="scoreLabel dontshow">Score: {score}</p>
                 <p className="countQuestionLabel">Questions: {countQusetion+1}/10</p>
             </div>
                 <p id="timer" className="timerLabel dontshow">Time left: {timer} seconds</p>
@@ -197,11 +209,19 @@ const QuestionsContainer = () => {
                 )}
                 </div>
             )}
-                <p className="textResultResponse dontshow">{checkResponse}</p>
+
+            <div className="resultContainer dontshow">
+                <p className="labelFinishTrivia">Congratulations: {currentUser}</p>
+                <p className="labelFinishTriviaScore">Your final score is: {score} points</p>
+            </div>
+            <p className="textResultResponse dontshow">{checkResponse}</p>
+            <div className="containerButtons">
                 <Button clasname="confirmButton" text="Confirm" onClick={checkAnswer}/>
                 <NavLink to="/" >
                     <Button clasname="backButton" text="Back"/>
                 </NavLink>
+            </div>
+            
                 
         </div>
     );

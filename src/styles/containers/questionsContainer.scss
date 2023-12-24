@@ -108,10 +108,36 @@
         }
     }
 
+    .resultContainer {
+        margin-top: 20px;
+        width: 100%;
+        background-color: $White;
+        border-radius: 10px;
+        padding: 20px;
+
+        .labelFinishTrivia{
+            color: $Dark-Red;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .labelFinishTriviaScore{
+            color: $Dark-Red;
+            font-size: 24px;
+            text-align: center;
+        }
+    }
+
     .textResultResponse {
         margin-top: 10px;
         font-size: 24px;
         color: $White;
+    }
+
+    .containerButtons{
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
     }
 
     .messageErrorApi{
