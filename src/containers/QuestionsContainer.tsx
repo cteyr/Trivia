@@ -123,6 +123,9 @@ const QuestionsContainer = () => {
                     if(Math.round(Math.random()) == 0 && correct_question==false){
                         randomizedAnswers.push(questions[countQusetion].correct_answer);
                         correct_question = true;
+                    }else if(incorrect_question > 2){
+                        randomizedAnswers.push(questions[countQusetion].correct_answer);
+                        correct_question = true;
                     }else {
                         randomizedAnswers.push( questions[countQusetion].incorrect_answers[incorrect_question]);
                         incorrect_question = incorrect_question +1;
