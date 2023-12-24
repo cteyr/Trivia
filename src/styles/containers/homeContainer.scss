@@ -8,10 +8,13 @@
     border-radius: 25px;
     padding-bottom: 50px;
 
+    @media screen and (max-width: 800px) {
+        width: 95vw; 
+    }
+
     .logoHome {
         border-radius: 25px 25px 0 0;
         width: 100%;
-        height: 50%;
     }
 
     .mainContainerForm{
@@ -21,7 +24,7 @@
         height: 100%;
         width: 100%;
         flex-direction: column;
-        margin-top: 50px;
+        margin-top: 30px;
 
         .inputHomeContainer {
             display: flex;
