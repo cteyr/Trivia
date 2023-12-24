@@ -2,7 +2,7 @@ import { useState,useEffect } from "react";
 import { Question } from "../types/question";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from 'react-router-dom';
 
 const QuestionsContainer = () => {
     const [currentUser, setCurrentUser]= useState("");
@@ -14,6 +14,14 @@ const QuestionsContainer = () => {
     const [checkResponse, setcheckResponse] = useState('');
     const [score, setCountScore]= useState(0);
     const [timer, setTimer]= useState(15);
+
+    const { pathname } = useLocation();
+    
+    const reloadPage = () => {
+        if (pathname === '/questions') {
+          window.location.reload(); // Recargar la página actual si está en /questions
+        }
+    };
 
     const handleOptionChange = (event) => { //Capturar la opcion seleccionada y actualizar la variable de estado
       setSelectedOption(event.target.value);
@@ -109,7 +117,8 @@ const QuestionsContainer = () => {
                     console.log("Respuesta del servidor (Demasiadas solicitudes)");
                     document.querySelector('.messageErrorApi').classList.remove('dontshow');
                     setLoading(false);
-                    setCountQusetion(-1); 
+                    setCountQusetion(-1);
+                    setTimer(0); 
                 }else {
                     console.log("Codigo de error desconocido");
                     setLoading(false); 
@@ -216,12 +225,11 @@ const QuestionsContainer = () => {
             </div>
             <p className="textResultResponse dontshow">{checkResponse}</p>
             <div className="containerButtons">
-                <Button clasname="confirmButton" text="Confirm" onClick={checkAnswer}/>
+                <Button clasname={timer == 0 ? `retryTrivia` : `confirmButton`} text={timer == 0 ? `Retry` : `Confirm`} onClick={timer == 0 ? reloadPage : checkAnswer}/>
                 <NavLink to="/" >
                     <Button clasname="backButton" text="Back"/>
                 </NavLink>
             </div>
-            
                 
         </div>
     );

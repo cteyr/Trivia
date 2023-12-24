@@ -37,6 +37,25 @@
     color: $White;
 }
 
+.retryTrivia{
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: $White;
+    color: $Dark-Red;
+    width: 245px;
+    font-weight: bolder;
+    font-size: 18px;
+    border: 1px solid $White;
+}
+
+.retryTrivia:hover{
+    cursor: pointer;
+    border: 1px solid $White;
+    background-color: $Dark-Red;
+    color: $White;
+}
+
 .backButton {
     margin-top: 15px;
     padding: 10px;
