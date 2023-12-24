@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
 const { NetlifyPlugin } = require("netlify-webpack-plugin");
+const WebpackPwaManifest = require("webpack-pwa-manifest");
 
 module.exports = {
   entry: {
@@ -46,6 +47,13 @@ module.exports = {
           status: 200,
         },
       ],
+    }),
+    new WebpackPwaManifest({
+      name: "Trivia",
+      short_name: "Trivia",
+      start_url: "/",
+      display: "standalone",
+      scope: "/",
     }),
     ],
   devServer: {
