@@ -55,7 +55,7 @@ const QuestionsContainer = () => {
             }else {
                 document.querySelector('.bodyQuestions').classList.add('dontshow');
                 document.querySelector('.resultContainer').classList.remove('dontshow');
-                setTimer(0);
+                setTimer(-1);
                 document.querySelector('.timerLabel').classList.add('dontshow');
                 document.querySelector('.textResultResponse').classList.add('dontshow');
             }
@@ -84,7 +84,7 @@ const QuestionsContainer = () => {
                         }else{
                             document.querySelector('.bodyQuestions').classList.add('dontshow');
                             document.querySelector('.resultContainer').classList.remove('dontshow');
-                            setTimer(0);
+                            setTimer(-1);
                             document.querySelector('.timerLabel').classList.add('dontshow');
                             document.querySelector('.textResultResponse').classList.add('dontshow');
                         }
@@ -118,7 +118,7 @@ const QuestionsContainer = () => {
                     document.querySelector('.messageErrorApi').classList.remove('dontshow');
                     setLoading(false);
                     setCountQusetion(-1);
-                    setTimer(0); 
+                    setTimer(-1); 
                 }else {
                     console.log("Codigo de error desconocido");
                     setLoading(false); 
@@ -225,7 +225,7 @@ const QuestionsContainer = () => {
             </div>
             <p className="textResultResponse dontshow">{checkResponse}</p>
             <div className="containerButtons">
-                <Button clasname={timer == 0 ? `retryTrivia` : `confirmButton`} text={timer == 0 ? `Retry` : `Confirm`} onClick={timer == 0 ? reloadPage : checkAnswer}/>
+                <Button clasname={timer == -1 ? `retryTrivia` : `confirmButton`} text={timer == -1 ? `Retry` : `Confirm`} onClick={timer == -1 ? reloadPage : checkAnswer}/>
                 <NavLink to="/" >
                     <Button clasname="backButton" text="Back"/>
                 </NavLink>
