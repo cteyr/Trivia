@@ -111,7 +111,13 @@ const QuestionsContainer = () => {
             .then(response => response.json())
             .then(data => {
                 if(data.response_code == 0) { // Respondio correctamente
-                    setQuestions(data.results);
+                    const dificulty = localStorage.getItem('difficulty');
+                    if(dificulty == 'all'){
+                        setQuestions(data.results);
+                    }else{
+                        const arrayFiltred = data.results.filter(elemento => elemento.difficulty === dificulty);
+                        setQuestions(arrayFiltred);
+                    }
                     setLoading(true); 
                 }else if(data.response_code == 5){ // Respondio (Too Many Requests)
                     console.log("Respuesta del servidor (Demasiadas solicitudes)");
