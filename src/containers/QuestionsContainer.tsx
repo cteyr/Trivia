@@ -49,7 +49,7 @@ const QuestionsContainer = () => {
                 console.log("Respuesta Incorrecta");
             }
 
-            if(countQusetion < 9){ // Si el contador no ha llegado a la pregunta numero 10
+            if(countQusetion < questions.length-1){ // Si el contador no ha llegado a la pregunta numero 10
                 setCountQusetion(countQusetion + 1);
                 setTimer(15); //Inicializamos el contador en 15 segundos
             }else {
@@ -78,7 +78,7 @@ const QuestionsContainer = () => {
                     } else {
                         clearInterval(interval);
                         //timerElement.textContent = '¡Tiempo terminado!';
-                        if(countQusetion < 9){
+                        if(countQusetion < questions.length-1){
                             setCountQusetion(countQusetion + 1); // Avanzamos a la siguiente pregunta
                             setTimer(15); //Inicializamos el contador en 15 segundos
                         }else{
@@ -168,7 +168,7 @@ const QuestionsContainer = () => {
             <div className="topContainer">
                 <p className="userNameLabel">User: {currentUser}</p>
                 <p className="scoreLabel dontshow">Score: {score}</p>
-                <p className="countQuestionLabel">Questions: {countQusetion+1}/10</p>
+                <p className="countQuestionLabel">Questions: {countQusetion+1}/{questions.length}</p>
             </div>
                 <p id="timer" className="timerLabel dontshow">Time left: {timer} seconds</p>
             <p className="messageErrorApi dontshow">Server response: Too many requests. Try again after a few seconds.</p>
