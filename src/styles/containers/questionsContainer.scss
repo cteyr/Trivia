@@ -26,18 +26,34 @@
 
         .userNameLabel{
             font-size: 28px;
+
+            @media screen and (max-width: 450px) {
+                font-size: 24px;
+            }
         }
 
         .scoreLabel {
             font-size: 28px;
+
+            @media screen and (max-width: 450px) {
+                font-size: 24px;
+            }
         }
 
         .dificultyLabel {
             font-size: 28px;
+
+            @media screen and (max-width: 450px) {
+                font-size: 24px;
+            }
         }
 
         .countQuestionLabel{
             font-size: 28px;
+
+            @media screen and (max-width: 450px) {
+                font-size: 24px;
+            }
         }
     }
 
@@ -48,6 +64,7 @@
 
         @media screen and (max-width: 450px) {
             margin-top: 50px;
+            font-size: 24px;
         }
     }
 
@@ -62,6 +79,10 @@
             color: $Dark-Red;
             font-size: 24px;
             text-align: center;
+
+            @media screen and (max-width: 450px) {
+                font-size: 22px;
+            }
         }
 
 
@@ -82,6 +103,10 @@
                     span{
                         margin-left: 5px;
                         font-size: 18px;
+
+                        @media screen and (max-width: 450px) {
+                            font-size: 16px;
+                        }
                     }
                 }
             }
@@ -123,12 +148,20 @@
             color: $Dark-Red;
             font-size: 24px;
             text-align: center;
+
+            @media screen and (max-width: 450px) {
+                font-size: 22px;
+            }
         }
 
         .labelFinishTriviaScore{
             color: $Dark-Red;
             font-size: 24px;
             text-align: center;
+
+            @media screen and (max-width: 450px) {
+                font-size: 22px;
+            }
         }
     }
 
@@ -136,6 +169,10 @@
         margin-top: 10px;
         font-size: 24px;
         color: $White;
+
+        @media screen and (max-width: 450px) {
+            font-size: 22px;
+        }
     }
 
     .containerButtons{
@@ -152,6 +189,10 @@
         background-color: $White;
         text-align: center;
         margin-top: 30px;
+
+        @media screen and (max-width: 450px) {
+            font-size: 22px;
+        }
     }
 
     .dontshow {
