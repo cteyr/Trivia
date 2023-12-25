@@ -33,14 +33,14 @@ const HomeContainer = () =>{
                 <div className="mainContainerForm">
                     <div className="inputHomeContainer">
                         <p className="welcomeHome">Welcome</p>
-                        <p className="labelUser">Enter your username</p>
+                        <p className="labelUser">Username</p>
                         <Input value={nameUser} 
                         clasname="inputNameUser"
                         type="text" 
                         handleInputChange={(e: React.ChangeEvent<HTMLInputElement>) => setNameUser(e.target.value)}
                         placeholder="Username"
                         />
-                        <p className="labelDifuculty">Enter difficulty</p>
+                        <p className="labelDifuculty">Difficulty</p>
                         <Select 
                             value={selectResults} 
                             clasname="selector"

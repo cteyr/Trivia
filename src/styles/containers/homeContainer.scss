@@ -35,17 +35,29 @@
             .welcomeHome {
                 font-size: 48px;
                 margin-bottom: 30px;
+
+                @media screen and (max-width: 450px) {
+                    font-size: 38px;
+                }
             }
     
             .labelUser{
                 font-size: 26px;
                 margin-bottom: 5px;
+
+                @media screen and (max-width: 450px) {
+                    font-size: 24px;
+                }
             }
 
             .labelDifuculty{
                 margin-top: 20px;
                 font-size: 26px;
                 margin-bottom: 5px;
+
+                @media screen and (max-width: 450px) {
+                    font-size: 24px;
+                }
             }         
         }
     
