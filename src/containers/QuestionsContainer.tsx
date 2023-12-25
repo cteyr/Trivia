@@ -14,6 +14,7 @@ const QuestionsContainer = () => {
     const [checkResponse, setcheckResponse] = useState('');
     const [score, setCountScore]= useState(0);
     const [timer, setTimer]= useState(15);
+    const [dificultyMode, setDificultyMode] = useState('');
 
     const { pathname } = useLocation();
     
@@ -118,6 +119,7 @@ const QuestionsContainer = () => {
                         const arrayFiltred = data.results.filter(elemento => elemento.difficulty === dificulty);
                         setQuestions(arrayFiltred);
                     }
+                    setDificultyMode(dificulty);
                     setLoading(true); 
                 }else if(data.response_code == 5){ // Respondio (Too Many Requests)
                     console.log("Respuesta del servidor (Demasiadas solicitudes)");
@@ -174,6 +176,7 @@ const QuestionsContainer = () => {
             <div className="topContainer">
                 <p className="userNameLabel">User: {currentUser}</p>
                 <p className="scoreLabel dontshow">Score: {score}</p>
+                <p className="dificultyLabel ">Difficulty: {dificultyMode}</p>
                 <p className="countQuestionLabel">Questions: {countQusetion+1}/{questions.length}</p>
             </div>
                 <p id="timer" className="timerLabel dontshow">Time left: {timer} seconds</p>
